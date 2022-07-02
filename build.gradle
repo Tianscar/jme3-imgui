@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+allprojects {
+
+    ext {
+        libName = 'jME3 ImGui'
+        libGroupName = 'com.tianscar'
+        libVendorName = 'Tianscar'
+
+        libVersionCode = 1
+        libVersionName = '0.0.1'
+
+        libSourceCompatibility = JavaVersion.VERSION_1_8
+        libTargetCompatibility = JavaVersion.VERSION_1_8
+
+        jmeVersion = '3.5.2-stable'
+        imguiVersion = '1.86.4'
+    }
+
+    group = libGroupName
+    version = libVersionName
+
+    repositories {
+        mavenCentral()
+    }
+
+}

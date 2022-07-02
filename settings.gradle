@@ -1,0 +1,4 @@
+rootProject.name = 'jme3-imgui'
+include 'lwjgl3'
+include 'core'
+

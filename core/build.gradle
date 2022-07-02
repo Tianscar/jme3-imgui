@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+sourceCompatibility = libSourceCompatibility
+targetCompatibility = libTargetCompatibility
+
+dependencies {
+    compileOnly "org.jmonkeyengine:jme3-core:$jmeVersion"
+    testImplementation "org.jmonkeyengine:jme3-core:$jmeVersion"
+
+    implementation "io.github.spair:imgui-java-binding:$imguiVersion"
+
+    apiElements "io.github.spair:imgui-java-binding:$imguiVersion"
+}
