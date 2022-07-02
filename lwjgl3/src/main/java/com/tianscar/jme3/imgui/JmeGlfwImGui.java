@@ -5,10 +5,16 @@ import com.jme3.system.JmeSystem;
 import com.jme3.system.Platform;
 import com.jme3.system.lwjgl.LwjglWindow;
 import imgui.ImGui;
+import imgui.ImGuiIO;
 import imgui.flag.ImGuiConfigFlags;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
+import imgui.type.ImInt;
 import org.lwjgl.glfw.GLFW;
+
+import java.nio.ByteBuffer;
+
+import static org.lwjgl.opengl.GL11C.*;
 
 public class JmeGlfwImGui extends JmeImGuiDelegate {
 
@@ -39,6 +45,22 @@ public class JmeGlfwImGui extends JmeImGuiDelegate {
         ImGui.createContext();
         imGuiGlfw.init(windowHandle, true);
         imGuiGl3.init(decideGlslVersion());
+    }
+
+    @Override
+    public void refreshFontTexture() {
+        ImInt fontW = new ImInt();
+        ImInt fontH = new ImInt();
+        ImGuiIO imGuiIO = ImGui.getIO();
+        ByteBuffer fontData = imGuiIO.getFonts().getTexDataAsRGBA32(fontW, fontH);
+        int originalTexture = glGetInteger(GL_TEXTURE_BINDING_2D);
+        int fontTexture = glGenTextures();
+        glBindTexture(GL_TEXTURE_2D, fontTexture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fontW.get(), fontH.get(), 0, GL_RGBA, GL_UNSIGNED_BYTE, fontData);
+        imGuiIO.getFonts().setTexID(fontTexture);
+        glBindTexture(GL_TEXTURE_2D, originalTexture);
     }
 
     /**

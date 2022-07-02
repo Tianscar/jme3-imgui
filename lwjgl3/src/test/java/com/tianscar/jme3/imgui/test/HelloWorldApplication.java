@@ -23,10 +23,10 @@ public class HelloWorldApplication extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        System.out.println("INIT");
         getFlyByCamera().setDragToRotate(true);
         // Initialize the ImGui
         JmeImGui.init(getContext());
+        ImGui.getIO().setIniFilename(null);
 
         Box b = new Box(1, 1, 1);
         Geometry geom = new Geometry("Box", b);

@@ -18,6 +18,12 @@ public class JmeImGui {
         JmeImGui.imGuiDelegate = imGuiDelegate;
     }
 
+    public static void refreshFontTexture() {
+        checkDelegate();
+        if (disposed) return;
+        imGuiDelegate.refreshFontTexture();
+    }
+
     public static void init(JmeContext context) {
         checkDelegate();
         checkInitted();
