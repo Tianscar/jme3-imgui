@@ -16,37 +16,61 @@ import java.nio.ByteBuffer;
 
 import static org.lwjgl.opengl.GL11C.*;
 
+/**
+ * The LWJGL3 platform's JmeImGuiDelegate.
+ */
 public class JmeGlfwImGui extends JmeImGuiDelegate {
 
     private final ImGuiImplGlfw imGuiGlfw = new ImGuiImplGlfw();
     private final ImGuiImplGl3 imGuiGl3 = new ImGuiImplGl3();
     private long windowHandle;
 
+    /**
+     * Gets the window handle pointer.
+     * @return the window handle
+     */
     public long getWindowHandle() {
         return windowHandle;
     }
 
+    /**
+     * Gets the ImGuiImplGlfw object.
+     * @return the ImGuiGlfw object
+     */
     public ImGuiImplGlfw getImGuiGlfw() {
         return imGuiGlfw;
     }
 
+    /**
+     * Gets the ImGuiGl3 object.
+     * @return the ImGuiGl3 object
+     */
     public ImGuiImplGl3 getImGuiGl3() {
         return imGuiGl3;
     }
 
+    /**
+     * Creates a JmeGlfwImGui Object with nothing done. You should call {@link JmeGlfwImGui#init(JmeContext, Runnable)} to initialize.
+     */
     public JmeGlfwImGui() {}
 
     /**
-     * Method to initialize imGui.
+     * Method to initialize ImGui.
+     * @param context the JmeContext
+     * @param beforeInit an interface for load additional ImGui settings
      */
     @Override
-    public void init(JmeContext context) {
+    public void init(JmeContext context, Runnable beforeInit) {
         windowHandle = ((LwjglWindow)context).getWindowHandle();
         ImGui.createContext();
+        if (beforeInit != null) beforeInit.run();
         imGuiGlfw.init(windowHandle, true);
         imGuiGl3.init(decideGlslVersion());
     }
 
+    /**
+     * Method to load generated font textures to GL.
+     */
     @Override
     public void refreshFontTexture() {
         ImInt fontW = new ImInt();
@@ -64,7 +88,7 @@ public class JmeGlfwImGui extends JmeImGuiDelegate {
     }
 
     /**
-     * Method to dispose all used imGui resources.
+     * Method to dispose all used ImGui resources.
      */
     public void dispose() {
         imGuiGl3.dispose();
@@ -72,13 +96,17 @@ public class JmeGlfwImGui extends JmeImGuiDelegate {
         ImGui.destroyContext();
     }
 
+    /**
+     * Decides the glsl version.
+     * @return the glsl version string
+     */
     protected String decideGlslVersion() {
         return JmeSystem.getPlatform().getOs() == Platform.Os.MacOS ? "#version 150" : "#version 130";
     }
 
     /**
      * Method called at the beginning of the main cycle.
-     * It clears OpenGL buffer and starts an ImGui frame.
+     * It starts a new ImGui frame.
      */
     public void startFrame() {
         imGuiGlfw.newFrame();
@@ -87,7 +115,7 @@ public class JmeGlfwImGui extends JmeImGuiDelegate {
 
     /**
      * Method called in the end of the main cycle.
-     * It renders ImGui and swaps GLFW buffers to show an updated frame.
+     * It renders ImGui to prepare an updated frame.
      */
     public void endFrame() {
         ImGui.render();

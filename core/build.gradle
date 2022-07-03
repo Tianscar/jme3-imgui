@@ -7,8 +7,7 @@ sourceCompatibility = libSourceCompatibility
 targetCompatibility = libTargetCompatibility
 
 dependencies {
-    compileOnly "org.jmonkeyengine:jme3-core:$jmeVersion"
-    testImplementation "org.jmonkeyengine:jme3-core:$jmeVersion"
+    implementation "org.jmonkeyengine:jme3-core:$jmeVersion"
 
     implementation "io.github.spair:imgui-java-binding:$imguiVersion"
 

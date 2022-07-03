@@ -5,6 +5,9 @@ import com.jme3.system.JmeContext;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * A simple helper class for use the Dear ImGui with jMonkeyEngine.
+ */
 public class JmeImGui {
 
     private static JmeImGuiDelegate imGuiDelegate;
@@ -14,37 +17,68 @@ public class JmeImGui {
 
     private JmeImGui(){}
 
+    /**
+     * Internal use only.
+     * @param imGuiDelegate the ImGuiDelegate object
+     */
     public static void setImGuiDelegate(JmeImGuiDelegate imGuiDelegate) {
         JmeImGui.imGuiDelegate = imGuiDelegate;
     }
 
+    /**
+     * Method to load generated font textures to GL.
+     */
     public static void refreshFontTexture() {
         checkDelegate();
         if (disposed) return;
         imGuiDelegate.refreshFontTexture();
     }
 
-    public static void init(JmeContext context) {
+    /**
+     * Method to initialize ImGui. Cannot be called more than once.
+     * @param context the JmeContext
+     * @param beforeInit an interface for load additional ImGui settings
+     */
+    public static void init(JmeContext context, Runnable beforeInit) {
         checkDelegate();
         checkInitted();
         if (disposed) return;
         disposed = false;
         initted = true;
-        imGuiDelegate.init(context);
+        imGuiDelegate.init(context, beforeInit);
     }
 
+    /**
+     * Method to initialize ImGui.
+     * @param context the JmeContext
+     */
+    public static void init(JmeContext context) {
+        init(context, null);
+    }
+
+    /**
+     * Method called at the beginning of the main cycle.
+     * It starts a new ImGui frame.
+     */
     public static void startFrame() {
         checkDelegate();
         if (disposed) return;
         imGuiDelegate.startFrame();
     }
 
+    /**
+     * Method called in the end of the main cycle.
+     * It renders ImGui to prepare an updated frame.
+     */
     public static void endFrame() {
         checkDelegate();
         if (disposed) return;
         imGuiDelegate.endFrame();
     }
 
+    /**
+     * Method to dispose all used ImGui resources. Can be called more than once, with the additional call nothing effects.
+     */
     public static void dispose() {
         checkDelegate();
         if (disposed) return;
@@ -52,10 +86,18 @@ public class JmeImGui {
         imGuiDelegate.dispose();
     }
 
+    /**
+     * Gets whether the JmeImGui is disposed.
+     * @return whether disposed
+     */
     public static boolean isDisposed() {
         return disposed;
     }
 
+    /**
+     * Gets whether the JmeImGui is initialized.
+     * @return whether initialized
+     */
     public static boolean isInitted() {
         return initted;
     }

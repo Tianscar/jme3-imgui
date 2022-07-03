@@ -29,7 +29,7 @@ public class CustomFontApplication extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        getFlyByCamera().setDragToRotate(true);
+        getFlyByCamera().setEnabled(false);
         // Initialize the ImGui
         JmeImGui.init(getContext());
         ImGui.getIO().setIniFilename(null);
