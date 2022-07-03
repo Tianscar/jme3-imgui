@@ -84,10 +84,9 @@ subprojects {
     }
 
     signing {
-        def signingKeyId = findProperty("signingKeyId") ?: System.getenv("GPG_KEY_ID")
         def signingKey = findProperty("signingKey") ?: System.getenv("GPG_KEY")
         def signingPassword = findProperty("signingPassword") ?:System.getenv("GPG_PASSWORD")
-        useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+        useInMemoryPgpKeys(signingKey, signingPassword)
         sign(publishing.publications.mavenJava)
     }
 
