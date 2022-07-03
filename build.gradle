@@ -1,8 +1,8 @@
-plugins {
-    id 'java'
-}
+subprojects {
 
-allprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'signing'
+    apply plugin: 'maven-publish'
 
     ext {
         libName = 'jME3 ImGui'
@@ -19,11 +19,82 @@ allprojects {
         imguiVersion = '1.86.4'
     }
 
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+    sourceCompatibility = libSourceCompatibility
+    targetCompatibility = libTargetCompatibility
+
     group = libGroupName
     version = libVersionName
 
     repositories {
         mavenCentral()
+    }
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId = libGroupName
+                artifactId = "${rootProject.name}-${project.name}"
+                version = libVersionName
+                from components.java
+                pom {
+                    name = libName
+                    description = 'A simple helper library for use the Dear ImGui with jMonkeyEngine. Currently supports LWJGL3 platform only.'
+                    url = 'https://github.com/Tianscar/jme3-imgui'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'Tianscar'
+                            name = 'Tiansword Carbonicacid'
+                            email = 'tianscar@protonmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git@github.com/Tianscar/jme3-imgui.git'
+                        developerConnection = 'scm:git:git@github.com/Tianscar/jme3-imgui.git'
+                        url = 'https://github.com/Tianscar/jme3-imgui'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                name = "OSSRH"
+                if (project.version.toString().endsWith("-SNAPSHOT")) {
+                    url = "https://s01.oss.sonatype.org/content/repositories/snapshots"
+                } else {
+                    url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                }
+                credentials {
+                    username = findProperty("ossrhUsername") ?: System.getenv("OSSRH_USERNAME")
+                    password = findProperty("ossrhPassword") ?: System.getenv("OSSRH_PASSWORD")
+                }
+            }
+        }
+    }
+
+    signing {
+        def signingKeyId = findProperty("signingKeyId") ?: System.getenv("GPG_KEY_ID")
+        def signingKey = findProperty("signingKey") ?: System.getenv("GPG_KEY")
+        def signingPassword = findProperty("signingPassword") ?:System.getenv("GPG_PASSWORD")
+        useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+        sign(publishing.publications.mavenJava)
+    }
+
+    javadoc {
+        if(JavaVersion.current().isJava9Compatible()) {
+            options.addBooleanOption('html5', true)
+        }
     }
 
 }

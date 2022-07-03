@@ -1,11 +1,3 @@
-plugins {
-    id 'java'
-}
-
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-sourceCompatibility = libSourceCompatibility
-targetCompatibility = libTargetCompatibility
-
 dependencies {
     implementation "org.jmonkeyengine:jme3-core:$jmeVersion"
 
