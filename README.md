@@ -1,10 +1,63 @@
 # jME3-ImGui
-A simple helper library for use the Dear ImGui with jMonkeyEngine. Currently supports LWJGL3 platform only.
+A simple helper library for use the Dear ImGui with jMonkeyEngine. Currently supports LWJGL3 platform only.  
+Supported jMonkeyEngine version: v3.5.2 or later
+
+## Add the library to your project (gradle)
+1. Add the Maven Central repository (if not exist) to your build file:
+```groovy
+repositories {
+    mavenCentral()
+}
+```
+
+2. Add the dependency:
+```groovy
+dependencies {
+    implementation 'com.tianscar:jme3-imgui:1.0.0'
+}
+```
 
 ## Usage
-docs: https://jme3-imgui.tianscar.com  
-examples: https://github.com/Tianscar/jme3-imgui/tree/main/lwjgl3/src/test/java/com/tianscar/jme3/imgui/test
+```java
+public class Usage extends SimpleApplication {
+
+    @Override
+    public void simpleInitApp() {
+        // Initialize the ImGui
+        JmeImGui.init(getContext());
+    }
+
+    @Override
+    public void simpleRender(RenderManager rm) {
+        // Start the ImGui frame
+        JmeImGui.startFrame();
+        // ----------- ImGui logic here ---------------
+        if (!JmeImGui.isDisposed()) {
+            // Draw widgets here
+        }
+        // --------------------------------------------
+        // End the ImGui frame
+        JmeImGui.endFrame();
+    }
+
+    @Override
+    public void requestClose(boolean esc) {
+        // Dispose the ImGui
+        JmeImGui.dispose();
+        super.requestClose(esc);
+    }
+
+}
+```
+[JavaDocs](https://jme3-imgui.tianscar.com)  
+[Examples](lwjgl3/src/test)
 
 ## License
-imgui-java - [Apache-2.0](https://github.com/SpaiR/imgui-java/blob/main/LICENSE) (c) SpaiR  
-jME3-ImGui - [Apache-2.0](https://github.com/Tianscar/jme3-imgui/blob/main/LICENSE) (c) Tianscar
+[Apache-2.0](https://github.com/Tianscar/jme3-imgui/blob/main/LICENSE) (c) Tianscar
+
+### Dependencies
+imgui-java - [Apache-2.0](https://github.com/SpaiR/imgui-java/blob/main/LICENSE)  
+jMonkeyEngine - [BSD-3-Clause](https://github.com/jMonkeyEngine/jmonkeyengine/blob/master/LICENSE.md)
+
+### Resources be used for test
+[Droid Sans Fallback](/lwjgl3/src/test/resources/droid_sans.ttf) - Apache-2.0

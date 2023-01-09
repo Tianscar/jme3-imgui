@@ -9,8 +9,8 @@ subprojects {
         libGroupName = 'com.tianscar'
         libVendorName = 'Tianscar'
 
-        libVersionCode = 1
-        libVersionName = '0.0.1'
+        libVersionCode = 2
+        libVersionName = '1.0.0'
 
         libSourceCompatibility = JavaVersion.VERSION_1_8
         libTargetCompatibility = JavaVersion.VERSION_1_8

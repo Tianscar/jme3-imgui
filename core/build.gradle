@@ -3,5 +3,5 @@ dependencies {
 
     implementation "io.github.spair:imgui-java-binding:$imguiVersion"
 
-    apiElements "io.github.spair:imgui-java-binding:$imguiVersion"
+    api "io.github.spair:imgui-java-binding:$imguiVersion"
 }
