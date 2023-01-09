@@ -53,7 +53,7 @@ public class Usage extends SimpleApplication {
 [Examples](lwjgl3/src/test)
 
 ## License
-[Apache-2.0](https://github.com/Tianscar/jme3-imgui/blob/main/LICENSE) (c) Tianscar
+[MIT](/LICENSE) (c) Tianscar
 
 ### Dependencies
 imgui-java - [Apache-2.0](https://github.com/SpaiR/imgui-java/blob/main/LICENSE)  
