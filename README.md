@@ -49,7 +49,7 @@ public class Usage extends SimpleApplication {
 
 }
 ```
-[JavaDocs](https://jme3-imgui.tianscar.com)  
+[JavaDocs](https://docs.tianscar.com/jme3-imgui)  
 [Examples](lwjgl3/src/test)
 
 ## License
