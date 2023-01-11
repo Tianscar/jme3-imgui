@@ -1,4 +1,4 @@
-# jME3-ImGui
+# jME3 ImGui
 A simple helper library for use the Dear ImGui with jMonkeyEngine. Currently supports LWJGL3 platform only.  
 Supported jMonkeyEngine version: v3.5.2 or later
 
