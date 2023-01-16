@@ -13,7 +13,7 @@ repositories {
 2. Add the dependency:
 ```groovy
 dependencies {
-    implementation 'com.tianscar:jme3-imgui:1.0.0'
+    implementation 'com.tianscar.jme3:jme3-imgui:1.0.0'
 }
 ```
 
@@ -50,7 +50,7 @@ public class Usage extends SimpleApplication {
 }
 ```
 [JavaDoc](https://docs.tianscar.com/jme3-imgui)  
-[Examples](lwjgl3/src/test)
+[Examples](lwjgl3/src/test/java/com/tianscar/jme3/imgui/test)
 
 ## License
 [MIT](/LICENSE) (c) Tianscar
