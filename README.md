@@ -6,6 +6,7 @@ Supported jMonkeyEngine version: v3.5.2 or later
 1. Add the Maven Central repository (if not exist) to your build file:
 ```groovy
 repositories {
+    ...
     mavenCentral()
 }
 ```
@@ -13,6 +14,7 @@ repositories {
 2. Add the dependency:
 ```groovy
 dependencies {
+    ...
     implementation 'com.tianscar.jme3:jme3-imgui:1.0.0'
 }
 ```
