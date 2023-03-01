@@ -15,7 +15,7 @@ repositories {
 ```groovy
 dependencies {
     ...
-    implementation 'com.tianscar.jme3:jme3-imgui:1.0.0'
+    implementation 'com.tianscar.jme3:jme3-imgui:1.0.1'
 }
 ```
 
@@ -52,14 +52,14 @@ public class Usage extends SimpleApplication {
 }
 ```
 [JavaDoc](https://docs.tianscar.com/jme3-imgui)  
-[Examples](lwjgl3/src/test/java/com/tianscar/jme3/imgui/test)
+[Examples](/lwjgl3/src/test/java/com/tianscar/jme3/imgui/test)
 
 ## License
-[MIT](/LICENSE) (c) Tianscar
+[MIT](/LICENSE) (c) Karstian Lee
 
-### Dependencies
-imgui-java - [Apache-2.0](https://github.com/SpaiR/imgui-java/blob/main/LICENSE)  
-jMonkeyEngine - [BSD-3-Clause](https://github.com/jMonkeyEngine/jmonkeyengine/blob/master/LICENSE.md)
+### Dependencies 
+[Apache-2.0](https://github.com/SpaiR/imgui-java/blob/main/LICENSE) [imgui-java](https://github.com/SpaiR/imgui-java/)  
+[BSD-3-Clause](https://github.com/jMonkeyEngine/jmonkeyengine/blob/master/LICENSE.md) [jMonkeyEngine](https://github.com/jMonkeyEngine/jmonkeyengine/)
 
 ### Resources be used for test
-[Droid Sans Fallback](/lwjgl3/src/test/resources/droid_sans.ttf) - Apache-2.0
+Apache-2.0 [Droid Sans Fallback](/lwjgl3/src/test/resources/droid_sans.ttf)
