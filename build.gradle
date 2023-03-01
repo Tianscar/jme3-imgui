@@ -5,26 +5,26 @@ subprojects {
     apply plugin: 'maven-publish'
 
     ext {
-        libName = 'jME3 ImGui'
-        libGroupName = 'com.tianscar.jme3'
-        libVendorName = 'Tianscar'
+        libraryName = 'jME3 ImGui'
+        libraryGroupName = 'com.tianscar.jme3'
+        libraryVendorName = 'Tianscar'
 
-        libVersionCode = 3
-        libVersionName = '1.0.1'
+        libraryVersionCode = 3
+        libraryVersionName = '1.0.1'
 
-        libSourceCompatibility = JavaVersion.VERSION_1_8
-        libTargetCompatibility = JavaVersion.VERSION_1_8
+        librarySourceCompatibility = JavaVersion.VERSION_1_8
+        libraryTargetCompatibility = JavaVersion.VERSION_1_8
 
         jmeVersion = '3.5.2-stable'
         imguiVersion = '1.86.4'
     }
 
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-    sourceCompatibility = libSourceCompatibility
-    targetCompatibility = libTargetCompatibility
+    sourceCompatibility = librarySourceCompatibility
+    targetCompatibility = libraryTargetCompatibility
 
-    group = libGroupName
-    version = libVersionName
+    group = libraryGroupName
+    version = libraryVersionName
 
     repositories {
         mavenCentral()
@@ -38,12 +38,12 @@ subprojects {
     publishing {
         publications {
             mavenJava(MavenPublication) {
-                groupId = libGroupName
+                groupId = libraryGroupName
                 artifactId = "${rootProject.name}-${project.name}"
-                version = libVersionName
+                version = libraryVersionName
                 from components.java
                 pom {
-                    name = libName
+                    name = libraryName
                     description = 'A simple helper library for use the Dear ImGui with jMonkeyEngine. Currently supports LWJGL3 platform only.'
                     url = 'https://github.com/Tianscar/jme3-imgui'
                     licenses {
