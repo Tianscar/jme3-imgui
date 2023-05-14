@@ -99,9 +99,8 @@ public class CustomFontApplication extends SimpleApplication {
     }
 
     private static byte[] getResourcesAsBytes(String pathname) {
-        if (!pathname.startsWith("/")) pathname = "/" + pathname;
         try {
-            return Files.readAllBytes(Paths.get(Objects.requireNonNull(CustomFontApplication.class.getResource(pathname)).toURI()));
+            return Files.readAllBytes(Paths.get(Objects.requireNonNull(CustomFontApplication.class.getClassLoader().getResource(pathname)).toURI()));
         } catch (IOException | URISyntaxException ignored) {
         }
         return null;
