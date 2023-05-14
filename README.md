@@ -1,6 +1,6 @@
 # JMonkeyEngine ImGui
 A simple helper library for use the Dear ImGui with jMonkeyEngine. Currently supports LWJGL3 platform only.  
-Supported jMonkeyEngine version: v3.6.0 or later
+Supported jMonkeyEngine version: v3.6.0 or later.
 
 ## Add the library to your project (gradle)
 1. Add the Maven Central repository (if not exist) to your build file:
